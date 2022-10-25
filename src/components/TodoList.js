@@ -14,9 +14,16 @@ class TodoList extends Component {
             todos: [...this.state.todos, todo]
         })
     }
+    remove = (id) => {
+      this.setState({
+        todos: this.state.todos.filter((todo) => {
+          return todo.id !== id
+        })
+      })
+    }
   render() {
     const todos = this.state.todos.map(todo => {
-        return <Todo task={todo.task} />
+        return <Todo id={todo.id} task={todo.task} removeTodo={this.remove} />
     })
     return (
       <div>
